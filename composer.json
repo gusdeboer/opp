@@ -1,0 +1,9 @@
+{
+    "name": "gusdeboer/opp",
+    "autoload": {
+        "psr-4": {
+            "Gusdeboer\\OPP\\": "src/"
+        }
+    },
+    "require": {}
+}
