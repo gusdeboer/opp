@@ -8,11 +8,10 @@ use Gusdeboer\OPP\Resources\ResourceInterface;
 
 readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpointInterface
 {
-    const ENDPOINT = 'merchants';
+    public const ENDPOINT = 'merchants';
 
     public function create(ResourceInterface $resource): Merchant
     {
-
     }
 
     public function retrieve(string $uid): Merchant
@@ -20,7 +19,6 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
         $request = $this->client->request('GET', self::ENDPOINT);
 
         if ($request->getStatusCode() !== 200) {
-
         }
 
         $json = '{
@@ -69,5 +67,4 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
     {
         return true;
     }
-
 }
