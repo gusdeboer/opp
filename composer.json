@@ -1,9 +1,36 @@
 {
     "name": "gusdeboer/opp",
+    "description": "Open Payment Platform API client",
+    "authors": [
+        {
+            "name": "Gus de Boer",
+            "email": "gusdeboer93@gmail.com",
+            "homepage": "https://gusdeboer.nl",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "open payment platform",
+        "php sdk",
+        "api",
+        "client",
+        "payment",
+        "psp",
+        "merchant",
+        "transactions",
+        "mandates",
+        "charges",
+        "withdrawls"
+    ],
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Gusdeboer\\OPP\\": "src/"
         }
     },
-    "require": {}
+    "require": {
+        "guzzlehttp/guzzle": "^7.5",
+        "php": ">=8.2",
+        "symfony/serializer": "^6.2"
+    }
 }
