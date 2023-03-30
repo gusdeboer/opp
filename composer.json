@@ -28,6 +28,11 @@
             "Gusdeboer\\OPP\\": "src/"
         }
     },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan analyse src --level 9",
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix src",
+        "phpunit": "vendor/bin/phpunit tests"
+    },
     "require": {
         "php": ">=8.2",
         "ext-curl": "*",
