@@ -17,7 +17,13 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
     {
         Assertion::isInstanceOf($resource, Merchant::class, '$resouce must me a merchant');
 
-        $request = $this->client->request('POST', self::ENDPOINT);
+        $requestBody = $this->serializer->normalize($resource);
+
+        $request = $this->client->request('POST', self::ENDPOINT, [
+            'form_params' => [
+                $requestBody
+            ]
+        ]);
     }
 
     public function retrieve(string $uid): Merchant
