@@ -6,11 +6,30 @@ use Gusdeboer\OPP\Types\MerchantType;
 
 final readonly class Merchant implements ResourceInterface
 {
-
     private string $uid;
-    private string $country;
     private string $emailAddress;
+    private string $status; // MerchantStatus
+    private array $compliance; // Compliance
     private MerchantType $type;
+    private ?string $cocNumber;
+    private ?array $legalEntity; // LegalEntity
+    private ?array $tradingNames;
+    private ?string $name;
+    private ?string $phone;
+    private ?string $vatNumber;
+    private ?string $country;
+    private ?string $sector;
+    private ?array $addresses; // Address
+    private ?array $contacts; // Contact
+    private ?array $profiles; // Profile
+    private ?array $paymentMethods; // PamentMethod
+    private ?array $notifyUrl; // NotifyUrl
+    private ?array $returnUrl; // PamentMethod
+
+    private ?array $metaData;
+
+    private int $created;
+    private int $updated;
 
     public function __construct()
     {
