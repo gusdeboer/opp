@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gusdeboer\OPP\Endpoints;
 
 use Assert\Assertion;
@@ -13,6 +15,9 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
 
     public function create(ResourceInterface $resource): Merchant
     {
+        Assertion::isInstanceOf($resource, Merchant::class, '$resouce must me a merchant');
+
+        $request = $this->client->request('POST', self::ENDPOINT);
     }
 
     public function retrieve(string $uid): Merchant
