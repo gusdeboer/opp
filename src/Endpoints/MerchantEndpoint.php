@@ -5,6 +5,7 @@ namespace Gusdeboer\OPP\Endpoints;
 use Assert\Assertion;
 use Gusdeboer\OPP\Resources\Merchant;
 use Gusdeboer\OPP\Resources\ResourceInterface;
+use Gusdeboer\OPP\Resources\ResourceListInterface;
 
 readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpointInterface
 {
@@ -53,7 +54,7 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
         return $this->serializer->deserialize($json, Merchant::class, 'json');
     }
 
-    public function list(int $page = 1, int $limit = 20, array $options = []): array
+    public function list(int $page = 1, int $limit = 20, array $options = []): ResourceListInterface
     {
         return [];
     }

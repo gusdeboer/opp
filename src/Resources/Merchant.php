@@ -4,5 +4,15 @@ namespace Gusdeboer\OPP\Resources;
 
 final readonly class Merchant implements ResourceInterface
 {
-    private string $uid;
+    public function __construct(
+        private string $uid
+    ){
+    }
+
+    public function getUid(): string
+    {
+        return $this->uid;
+    }
+
+
 }
