@@ -31,7 +31,7 @@ final readonly class OnlinePaymentPlatformApiClient
                 $this->version
             ),
             'headers' => [
-                'Authorization' => $this->token
+                'Authorization' => sprintf('Bearer %s', $this->token),
             ]
         ]);
 

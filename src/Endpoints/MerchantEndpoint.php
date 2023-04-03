@@ -31,7 +31,7 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
 
     public function retrieve(string $uid): Merchant
     {
-        $request = $this->client->request('GET', self::ENDPOINT);
+        $request = $this->client->request('GET', sprintf('%s/%s', self::ENDPOINT, $uid));
 
         if ($request->getStatusCode() !== 200) {
             //ExceptionFactory::createFromRequest();
