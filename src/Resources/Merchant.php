@@ -16,6 +16,38 @@ final readonly class Merchant implements ResourceInterface
     {
     }
 
+    /**
+     * @return string
+     */
+    public function getUid(): string
+    {
+        return $this->uid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmailAddress(): string
+    {
+        return $this->emailAddress;
+    }
+
+    /**
+     * @return MerchantType
+     */
+    public function getType(): MerchantType
+    {
+        return $this->type;
+    }
+
 
     public function setUid(string $uid): self
     {
