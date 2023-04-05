@@ -9,8 +9,8 @@ trait ResourceTrait
     private string $uid;
     private ObjectType $object;
 
-    private int $created;
-    private int $updated;
+    private \DateTimeImmutable $created;
+    private \DateTimeImmutable $updated;
 
     /**
      * @return string
@@ -47,7 +47,7 @@ trait ResourceTrait
     /**
      * @return int
      */
-    public function getCreated(): int
+    public function getCreated(): \DateTimeImmutable
     {
         return $this->created;
     }
@@ -57,13 +57,14 @@ trait ResourceTrait
      */
     public function setCreated(int $created): void
     {
-        $this->created = $created;
+        $dateTime = new \DateTimeImmutable();
+        $this->created = $dateTime->setTimestamp($created);
     }
 
     /**
      * @return int
      */
-    public function getUpdated(): int
+    public function getUpdated(): \DateTimeImmutable
     {
         return $this->updated;
     }
@@ -73,6 +74,7 @@ trait ResourceTrait
      */
     public function setUpdated(int $updated): void
     {
-        $this->updated = $updated;
+        $dateTime = new \DateTimeImmutable();
+        $this->updated = $dateTime->setTimestamp($updated);
     }
 }

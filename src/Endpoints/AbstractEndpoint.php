@@ -18,7 +18,9 @@ abstract readonly class AbstractEndpoint
 
     public function __construct(OnlinePaymentPlatformApiClient $onlinePaymentPlatformApiClient)
     {
-        $normalizers = [new ObjectNormalizer(null, null, null, new ReflectionExtractor())];
+        $normalizers = [
+            new ObjectNormalizer(null, null, null, new ReflectionExtractor())
+        ];
         $encoders = [new JsonEncoder()];
 
         $this->serializer = new Serializer($normalizers, $encoders);
