@@ -9,7 +9,7 @@ enum MerchantType: string
     case Business = 'business';
     case Consumer = 'consumer';
 
-    public static function fromString(string $type): MerchantType
+    public static function fromString(string $type): self
     {
         switch ($type) {
             case self::Consumer->value:

@@ -3,6 +3,7 @@
 namespace Gusdeboer\OPP\Resources;
 
 use Gusdeboer\OPP\Resources\Traits\ResourceTrait;
+use Gusdeboer\OPP\Types\MerchantStatus;
 use Gusdeboer\OPP\Types\MerchantType;
 use Gusdeboer\OPP\Types\ObjectType;
 
@@ -11,8 +12,8 @@ final class Merchant implements ResourceInterface
     use ResourceTrait;
 
     private string $emailAddress;
-    private string $status; // MerchantStatus
-    private Compliance $compliance; // Compliance
+    private MerchantStatus $status;
+    private Compliance $compliance;
     private MerchantType $type;
     private ?string $cocNumber;
     private ?array $legalEntity; // LegalEntity
@@ -35,36 +36,24 @@ final class Merchant implements ResourceInterface
     {
     }
 
-    /**
-     * @return string
-     */
     public function getEmailAddress(): string
     {
         return $this->emailAddress;
     }
 
-    /**
-     * @param string $emailAddress
-     */
     public function setEmailAddress(string $emailAddress): void
     {
         $this->emailAddress = $emailAddress;
     }
 
-    /**
-     * @return string
-     */
-    public function getStatus(): string
+    public function getStatus(): MerchantStatus
     {
         return $this->status;
     }
 
-    /**
-     * @param string $status
-     */
     public function setStatus(string $status): void
     {
-        $this->status = $status;
+        $this->status = MerchantStatus::fromString($status);
     }
 
     /**
@@ -75,7 +64,8 @@ final class Merchant implements ResourceInterface
         return $this->compliance;
     }
 
-    public function setCompliance($compliance): void
+    /** @param Compliance $compliance */
+    public function setCompliance(Compliance $compliance): void
     {
         $this->compliance = $compliance;
     }

@@ -9,7 +9,7 @@ enum ObjectType: string
 {
     case Merchant = 'merchant';
 
-    public static function fromString(string $type): ObjectType
+    public static function fromString(string $type): self
     {
         switch ($type) {
             case self::Merchant->value:

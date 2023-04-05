@@ -10,7 +10,7 @@ enum ComplianceStatus: string
     case Pending = 'pending';
     case Verified = 'verified';
 
-    public static function fromString(string $type): ComplianceStatus
+    public static function fromString(string $type): self
     {
         switch ($type) {
             case self::Unverified->value:
