@@ -2,14 +2,17 @@
 
 namespace Gusdeboer\OPP\Resources;
 
+use Gusdeboer\OPP\Resources\Traits\ResourceTrait;
 use Gusdeboer\OPP\Types\MerchantType;
+use Gusdeboer\OPP\Types\ObjectType;
 
-final readonly class Merchant implements ResourceInterface
+final class Merchant implements ResourceInterface
 {
-    private string $uid;
+    use ResourceTrait;
+
     private string $emailAddress;
     private string $status; // MerchantStatus
-    private array $compliance; // Compliance
+    private Compliance $compliance; // Compliance
     private MerchantType $type;
     private ?string $cocNumber;
     private ?array $legalEntity; // LegalEntity
@@ -24,31 +27,12 @@ final readonly class Merchant implements ResourceInterface
     private ?array $profiles; // Profile
     private ?array $paymentMethods; // PamentMethod
     private ?array $notifyUrl; // NotifyUrl
-    private ?array $returnUrl; // PamentMethod
+    public ?array $returnUrl; // PamentMethod
 
     private ?array $metaData;
 
-    private int $created;
-    private int $updated;
-
     public function __construct()
     {
-    }
-
-    /**
-     * @return string
-     */
-    public function getUid(): string
-    {
-        return $this->uid;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry(): string
-    {
-        return $this->country;
     }
 
     /**
@@ -60,29 +44,241 @@ final readonly class Merchant implements ResourceInterface
     }
 
     /**
-     * @return MerchantType
+     * @param string $emailAddress
      */
+    public function setEmailAddress(string $emailAddress): void
+    {
+        $this->emailAddress = $emailAddress;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCompliance(): ?Compliance
+    {
+        return $this->compliance;
+    }
+
+    public function setCompliance($compliance): void
+    {
+        $this->compliance = $compliance;
+    }
+
     public function getType(): MerchantType
     {
         return $this->type;
     }
 
-
-    public function setUid(string $uid): self
+    public function setType(string $type): void
     {
-        $this->uid = $uid;
-        return $this;
+        $this->type = MerchantType::fromString($type);
     }
 
-    public function setCountry(string $country): self
+    public function getCocNumber(): ?string
+    {
+        return $this->cocNumber;
+    }
+
+    public function setCocNumber(?string $cocNumber): void
+    {
+        $this->cocNumber = $cocNumber;
+    }
+
+    public function getLegalEntity(): ?array
+    {
+        return $this->legalEntity;
+    }
+
+    public function setLegalEntity(?array $legalEntity): void
+    {
+        $this->legalEntity = $legalEntity;
+    }
+
+    public function getTradingNames(): ?array
+    {
+        return $this->tradingNames;
+    }
+
+    public function setTradingNames(?array $tradingNames): void
+    {
+        $this->tradingNames = $tradingNames;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): void
+    {
+        $this->phone = $phone;
+    }
+
+    public function getVatNumber(): ?string
+    {
+        return $this->vatNumber;
+    }
+
+    public function setVatNumber(?string $vatNumber): void
+    {
+        $this->vatNumber = $vatNumber;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): void
     {
         $this->country = $country;
-        return $this;
     }
 
-    public function setEmailAddress(string $emailAddress): self
+    /**
+     * @return string|null
+     */
+    public function getSector(): ?string
     {
-        $this->emailAddress = $emailAddress;
-        return $this;
+        return $this->sector;
+    }
+
+    /**
+     * @param string|null $sector
+     */
+    public function setSector(?string $sector): void
+    {
+        $this->sector = $sector;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getAddresses(): ?array
+    {
+        return $this->addresses;
+    }
+
+    /**
+     * @param array|null $addresses
+     */
+    public function setAddresses(?array $addresses): void
+    {
+        $this->addresses = $addresses;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getContacts(): ?array
+    {
+        return $this->contacts;
+    }
+
+    /**
+     * @param array|null $contacts
+     */
+    public function setContacts(?array $contacts): void
+    {
+        $this->contacts = $contacts;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getProfiles(): ?array
+    {
+        return $this->profiles;
+    }
+
+    /**
+     * @param array|null $profiles
+     */
+    public function setProfiles(?array $profiles): void
+    {
+        $this->profiles = $profiles;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getPaymentMethods(): ?array
+    {
+        return $this->paymentMethods;
+    }
+
+    /**
+     * @param array|null $paymentMethods
+     */
+    public function setPaymentMethods(?array $paymentMethods): void
+    {
+        $this->paymentMethods = $paymentMethods;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getNotifyUrl(): ?array
+    {
+        return $this->notifyUrl;
+    }
+
+    /**
+     * @param array|null $notifyUrl
+     */
+    public function setNotifyUrl(?array $notifyUrl): void
+    {
+        $this->notifyUrl = $notifyUrl;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getReturnUrl(): ?array
+    {
+        return $this->returnUrl;
+    }
+
+    /**
+     * @param array|null $returnUrl
+     */
+    public function setReturnUrl(?array $returnUrl): void
+    {
+        $this->returnUrl = $returnUrl;
+    }
+
+    public function getMetaData(): ?array
+    {
+        return $this->metaData;
+    }
+
+    public function setMetaData(?array $metaData): void
+    {
+        $this->metaData = $metaData;
     }
 }

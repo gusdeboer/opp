@@ -31,7 +31,7 @@
     },
     "scripts": {
         "phpstan": "vendor/bin/phpstan analyse src --level 9",
-        "php-cs-fixer": "vendor/bin/php-cs-fixer fix src",
+        "php-cs-fixer": "vendor/bin/php-cs-fixer fix src -v",
         "phpunit": "vendor/bin/phpunit tests"
     },
     "require": {
