@@ -10,21 +10,19 @@ enum ComplianceStatus: string
     case Pending = 'pending';
     case Verified = 'verified';
 
-    public static function fromString(string $type): self
+    public static function getValues(): array
     {
-        switch ($type) {
-            case self::Unverified->value:
-                $object = self::Unverified;
-                break;
-            case self::Pending->value:
-                $object = self::Pending;
-                break;
-            case self::Verified->value:
-                $object = self::Verified;
-                break;
-            default:
-                $object = false;
-        }
+        return array_column(self::cases(), 'value');
+    }
+
+    public static function fromString(string $status): self
+    {
+        return match ($status) {
+            self::Unverified->value => self::Unverified,
+            self::Pending->value => self::Pending,
+            self::Verified->value => self::Verified,
+            default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $status)),
+        };
 
         Assertion::isInstanceOf($object, self::class);
 

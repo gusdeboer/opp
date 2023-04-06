@@ -2,6 +2,10 @@
 
 namespace Gusdeboer\OPP\Exceptions;
 
-class UnauthorizedException extends \Exception
+use GuzzleHttp\Exception\RequestException;
+
+final class UnauthorizedException extends \Exception
 {
+ 
+
 }

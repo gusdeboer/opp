@@ -9,18 +9,18 @@ enum MerchantType: string
     case Business = 'business';
     case Consumer = 'consumer';
 
-    public static function fromString(string $type): self
+    public static function getValues(): array
     {
-        switch ($type) {
-            case self::Consumer->value:
-                $object = self::Consumer;
-                break;
-            case self::Business->value:
-                $object = self::Business;
-                break;
-            default:
-                $object = false;
-        }
+        return array_column(self::cases(), 'value');
+    }
+
+    public static function fromString(string $status): self
+    {
+        return match ($status) {
+            self::Business->value => self::Business,
+            self::Consumer->value => self::Consumer,
+            default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $status)),
+        };
 
         Assertion::isInstanceOf($object, self::class);
 

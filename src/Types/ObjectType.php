@@ -9,16 +9,17 @@ enum ObjectType: string
 {
     case Merchant = 'merchant';
 
-    public static function fromString(string $type): self
+    public static function getValues(): array
     {
-        switch ($type) {
-            case self::Merchant->value:
-                $object = self::Merchant;
-                break;
+        return array_column(self::cases(), 'value');
+    }
 
-            default:
-                $object = false;
-        }
+    public static function fromString(string $status): self
+    {
+        return match ($status) {
+            self::Merchant->value => self::Merchant,
+            default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $status)),
+        };
 
         Assertion::isInstanceOf($object, self::class);
 

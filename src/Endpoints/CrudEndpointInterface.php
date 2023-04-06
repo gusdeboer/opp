@@ -21,7 +21,7 @@ interface CrudEndpointInterface
      */
     public function list(int $page = 1, int $limit = 20, array $options = []): ResourceListInterface;
 
-    public function update(string $uid, ResourceInterface $resource): ResourceInterface;
+    public function update(ResourceInterface $resource): ResourceInterface;
 
     public function delete(string $uid): bool;
 }

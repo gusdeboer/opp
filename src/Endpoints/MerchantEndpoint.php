@@ -9,6 +9,7 @@ use Gusdeboer\OPP\Exceptions\ExceptionFactory;
 use Gusdeboer\OPP\Resources\Merchant;
 use Gusdeboer\OPP\Resources\ResourceInterface;
 use Gusdeboer\OPP\Resources\ResourceListInterface;
+use GuzzleHttp\Exception\RequestException;
 
 readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpointInterface
 {
@@ -16,7 +17,7 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
 
     public function create(ResourceInterface $resource): Merchant
     {
-        Assertion::isInstanceOf($resource, Merchant::class, '$resouce must me a merchant');
+        Assertion::isInstanceOf($resource, Merchant::class);
 
         $requestBody = $this->serializer->normalize($resource);
 
@@ -31,10 +32,10 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
 
     public function retrieve(string $uid): Merchant
     {
-        $request = $this->client->request('GET', sprintf('%s/%s', self::ENDPOINT, $uid));
-
-        if ($request->getStatusCode() !== 200) {
-            //ExceptionFactory::createFromRequest();
+        try {
+            $request = $this->client->request('GET', sprintf('%s/%s', self::ENDPOINT, $uid));
+        } catch (RequestException $e) {
+            ExceptionFactory::createFromRequest($e, Merchant::class);
         }
 
         return $this->serializer->deserialize($request->getBody()->getContents(), Merchant::class, 'json');
@@ -45,9 +46,23 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
         return [];
     }
 
-    public function update(string $uid, ResourceInterface $resource): Merchant
+
+    public function update(ResourceInterface $resource): Merchant
     {
         Assertion::isInstanceOf($resource, Merchant::class);
+
+        $requestBody = $this->serializer->serialize($resource, 'json');
+        dd($requestBody);
+        $request = $this->client->request(
+            'POST',
+            sprintf('%s/%s', self::ENDPOINT, $resource->getUid()),
+            [
+            'form_params' => [
+                $requestBody
+            ]
+        ]);
+
+        return $this->serializer->deserialize($request->getBody()->getContents(), Merchant::class, 'json');
     }
 
     public function delete(string $uid): bool
