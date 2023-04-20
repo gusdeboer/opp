@@ -3,6 +3,7 @@
 namespace Gusdeboer\OPP\Resources;
 
 use Gusdeboer\OPP\Resources\Traits\ResourceTrait;
+use Gusdeboer\OPP\Types\CountryType;
 use Gusdeboer\OPP\Types\MerchantStatus;
 use Gusdeboer\OPP\Types\MerchantType;
 use Gusdeboer\OPP\Types\ObjectType;
@@ -21,14 +22,14 @@ final class Merchant implements ResourceInterface
     private ?string $name;
     private ?string $phone;
     private ?string $vatNumber;
-    private ?string $country;
+    private ?CountryType $country;
     private ?string $sector;
     private ?array $addresses; // Address
     private ?array $contacts; // Contact
     private ?array $profiles; // Profile
-    private ?array $paymentMethods; // PamentMethod
-    private ?array $notifyUrl; // NotifyUrl
-    public ?array $returnUrl; // PamentMethod
+    private ?array $paymentMethods; // PaymentMethod
+    private ?string $notifyUrl;
+    public ?string $returnUrl;
 
     private ?array $metaData;
 
@@ -140,14 +141,14 @@ final class Merchant implements ResourceInterface
         $this->vatNumber = $vatNumber;
     }
 
-    public function getCountry(): ?string
+    public function getCountry(): ?CountryType
     {
         return $this->country;
     }
 
     public function setCountry(?string $country): void
     {
-        $this->country = $country;
+        $this->country = $country ? CountryType::fromString($country) : null;
     }
 
     /**
@@ -231,33 +232,33 @@ final class Merchant implements ResourceInterface
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getNotifyUrl(): ?array
+    public function getNotifyUrl(): ?string
     {
         return $this->notifyUrl;
     }
 
     /**
-     * @param array|null $notifyUrl
+     * @param string|null $notifyUrl
      */
-    public function setNotifyUrl(?array $notifyUrl): void
+    public function setNotifyUrl(?string $notifyUrl): void
     {
         $this->notifyUrl = $notifyUrl;
     }
 
     /**
-     * @return array|null
+     * @return string|null
      */
-    public function getReturnUrl(): ?array
+    public function getReturnUrl(): ?string
     {
         return $this->returnUrl;
     }
 
     /**
-     * @param array|null $returnUrl
+     * @param string|null $returnUrl
      */
-    public function setReturnUrl(?array $returnUrl): void
+    public function setReturnUrl(?string $returnUrl): void
     {
         $this->returnUrl = $returnUrl;
     }

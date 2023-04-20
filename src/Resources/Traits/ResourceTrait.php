@@ -41,7 +41,7 @@ trait ResourceTrait
      */
     public function setObject(string $object): void
     {
-        $this->object = ObjectType::fromString($object);
+        $this->object = ObjectType::from($object);
     }
 
     /**

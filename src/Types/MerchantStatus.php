@@ -27,8 +27,6 @@ enum MerchantStatus: string
             self::Suspended->value => self::Suspended,
             self::Terminated->value => self::Terminated,
             self::Blocked->value => self::Blocked,
-            self::New->value => self::New,
-            self::New->value => self::New,
             default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $status)),
         };
 

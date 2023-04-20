@@ -51,16 +51,13 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
     {
         Assertion::isInstanceOf($resource, Merchant::class);
 
-        $requestBody = $this->serializer->serialize($resource, 'json');
-        dd($requestBody);
+        $requestBody = $this->serializer->normalize($resource);
+
         $request = $this->client->request(
             'POST',
             sprintf('%s/%s', self::ENDPOINT, $resource->getUid()),
-            [
-            'form_params' => [
-                $requestBody
-            ]
-        ]);
+            ['json' => $requestBody]
+        );
 
         return $this->serializer->deserialize($request->getBody()->getContents(), Merchant::class, 'json');
     }

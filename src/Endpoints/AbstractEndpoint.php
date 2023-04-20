@@ -8,6 +8,8 @@ use Gusdeboer\OPP\OnlinePaymentPlatformApiClient;
 use GuzzleHttp\Client;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Symfony\Component\Serializer\Normalizer\BackedEnumNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
@@ -19,7 +21,18 @@ abstract readonly class AbstractEndpoint
     public function __construct(OnlinePaymentPlatformApiClient $onlinePaymentPlatformApiClient)
     {
         $normalizers = [
-            new ObjectNormalizer(null, null, null, new ReflectionExtractor())
+            new BackedEnumNormalizer(
+                null,
+                null,
+                null,
+                new ReflectionExtractor()
+            ),
+            new ObjectNormalizer(
+                null,
+                new CamelCaseToSnakeCaseNameConverter(),
+                null,
+                new ReflectionExtractor()
+            ),
         ];
         $encoders = [new JsonEncoder()];
 
