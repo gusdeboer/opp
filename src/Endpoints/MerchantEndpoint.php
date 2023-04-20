@@ -10,6 +10,7 @@ use Gusdeboer\OPP\Resources\Merchant;
 use Gusdeboer\OPP\Resources\ResourceInterface;
 use Gusdeboer\OPP\Resources\ResourceListInterface;
 use GuzzleHttp\Exception\RequestException;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 
 readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpointInterface
 {
@@ -19,13 +20,35 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
     {
         Assertion::isInstanceOf($resource, Merchant::class);
 
-        $requestBody = $this->serializer->normalize($resource);
+        $requestBody = $this->serializer->normalize(
+            data: $resource,
+            context: [AbstractNormalizer::ATTRIBUTES => [
+                'type',
+                'country',
+                'locale',
+                'firstName',
+                'lastName',
+                'isPep',
+                'cocNr',
+                'vatNr',
+                'legalNames',
+                'legalEntity',
+                'tradingNames',
+                'emailaddress',
+                'phone',
+                'settlementInterval',
+                'notifyUrl',
+                'returnUrl',
+                'metaData',
+                'addresses'
+            ]]
+        );
 
-        $request = $this->client->request('POST', self::ENDPOINT, [
-            'form_params' => [
-                $requestBody
-            ]
-        ]);
+        $request = $this->client->request(
+            'POST',
+            self::ENDPOINT,
+            ['json' => $requestBody]
+        );
 
         return $this->serializer->deserialize($request->getBody()->getContents(), Merchant::class, 'json');
     }
@@ -51,8 +74,17 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
     {
         Assertion::isInstanceOf($resource, Merchant::class);
 
-        $requestBody = $this->serializer->normalize($resource);
-
+        $requestBody = $this->serializer->normalize(
+            data: $resource,
+            context: [AbstractNormalizer::ATTRIBUTES => [
+                'status',
+                'emailaddress',
+                'isPep',
+                'notifyUrl',
+                'returnUrl'
+            ]]
+        );
+        dd($requestBody);
         $request = $this->client->request(
             'POST',
             sprintf('%s/%s', self::ENDPOINT, $resource->getUid()),

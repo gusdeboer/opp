@@ -7,35 +7,35 @@ use Assert\Assertion;
 
 enum CountryType: string
 {
-    case Belgium = 'BEL'; //Belgium,
-    case Bulgaria = 'BGR'; //Bulgaria
-    case Cyprus = 'CYP'; //Cyprus
-    case Denmark = 'DNK'; //Denmark
-    case Germany = 'DEU'; //Germany
-    case Estonia = 'EST'; //Estonia
-    case Finland = 'FIN'; //Finland
-    case France = 'FRA'; //France
-    case Greece = 'GRC'; //Greece
-    case Hungary = 'HUN'; //Hungary
-    case Ireland = 'IRL'; //Ireland
-    case Italy = 'ITA'; //Italy
-    case Croatia = 'HRV'; //Croatia
-    case Lithuania = 'LTU'; //Lithuania
-    case Latvia = 'LVA'; //Latvia
-    case Luxembourg = 'LUX'; //Luxembourg
-    case Malta = 'MLT'; //Malta
-    case TheNetherlands = 'NLD'; //The Netherlands
-    case Norway = 'NOR'; //Norway
-    case Austria = 'AUT'; //Austria
-    case Poland = 'POL'; //Poland
-    case Portugal = 'PRT'; //Portugal
-    case Romania = 'ROU'; //Romania
-    case Slovenia = 'SVN'; //Slovenia
-    case Slovakia = 'SVK'; //Slovakia
-    case Spain = 'ESP'; //Spain
-    case CzechRepublic = 'CZE'; //Czech Republic
-    case GreatBritain = 'GBR'; //Great-Britain
-    case Sweden = 'SWE'; //Sweden
+    case Belgium = 'bel';
+    case Bulgaria = 'bgr';
+    case Cyprus = 'cyp';
+    case Denmark = 'dnk';
+    case Germany = 'deu';
+    case Estonia = 'est';
+    case Finland = 'fin';
+    case France = 'fra';
+    case Greece = 'grc';
+    case Hungary = 'hun';
+    case Ireland = 'irl';
+    case Italy = 'ita';
+    case Croatia = 'hrv';
+    case Lithuania = 'ltu';
+    case Latvia = 'lva';
+    case Luxembourg = 'lux';
+    case Malta = 'mlt';
+    case TheNetherlands = 'nld';
+    case Norway = 'nor';
+    case Austria = 'aut';
+    case Poland = 'pol';
+    case Portugal = 'prt';
+    case Romania = 'rou';
+    case Slovenia = 'svn';
+    case Slovakia = 'svk';
+    case Spain = 'esp';
+    case CzechRepublic = 'cze';
+    case GreatBritain = 'gbr';
+    case Sweden = 'swe';
 
     public static function getValues(): array
     {

@@ -44,7 +44,7 @@ final readonly class ExceptionFactory
     private static function parseMessage(ClientException $exception, string $resource):string
     {
         $content = json_decode($exception->getResponse()->getBody()->getContents());
-        dd($resource);
+        dd($exception->getResponse()->getHeaders());
         return sprintf(
             'Error %d %s: %s',
             $exception->getCode(),

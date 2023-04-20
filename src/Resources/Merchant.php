@@ -12,16 +12,16 @@ final class Merchant implements ResourceInterface
 {
     use ResourceTrait;
 
-    private string $emailAddress;
+    private string $emailaddress;
     private MerchantStatus $status;
     private Compliance $compliance;
     private MerchantType $type;
-    private ?string $cocNumber;
+    private ?string $cocNr;
     private ?array $legalEntity; // LegalEntity
     private ?array $tradingNames;
     private ?string $name;
     private ?string $phone;
-    private ?string $vatNumber;
+    private ?string $vatNr;
     private ?CountryType $country;
     private ?string $sector;
     private ?array $addresses; // Address
@@ -37,14 +37,14 @@ final class Merchant implements ResourceInterface
     {
     }
 
-    public function getEmailAddress(): string
+    public function getEmailaddress(): string
     {
-        return $this->emailAddress;
+        return $this->emailaddress;
     }
 
-    public function setEmailAddress(string $emailAddress): void
+    public function setEmailaddress(string $emailAddress): void
     {
-        $this->emailAddress = $emailAddress;
+        $this->emailaddress = $emailAddress;
     }
 
     public function getStatus(): MerchantStatus
