@@ -37,6 +37,9 @@ enum CountryType: string
     case GreatBritain = 'gbr';
     case Sweden = 'swe';
 
+    /**
+     * @return array<string>
+     */
     public static function getValues(): array
     {
         return array_column(self::cases(), 'value');
@@ -74,11 +77,7 @@ enum CountryType: string
             self::CzechRepublic->value => self::CzechRepublic,
             self::GreatBritain->value => self::GreatBritain,
             self::Sweden->value => self::Sweden,
-            default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $country)),
+            default => throw new \InvalidArgumentException(sprintf('Invalid country: %s', $country)),
         };
-
-        Assertion::isInstanceOf($object, self::class);
-
-        return $object;
     }
 }

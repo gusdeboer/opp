@@ -45,7 +45,7 @@ trait ResourceTrait
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
      */
     public function getCreated(): \DateTimeImmutable
     {
@@ -62,7 +62,7 @@ trait ResourceTrait
     }
 
     /**
-     * @return int
+     * @return \DateTimeImmutable
      */
     public function getUpdated(): \DateTimeImmutable
     {

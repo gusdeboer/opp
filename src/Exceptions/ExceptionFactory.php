@@ -6,6 +6,7 @@ namespace Gusdeboer\OPP\Exceptions;
 
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Client\RequestExceptionInterface;
 
 final readonly class ExceptionFactory
 {
@@ -41,7 +42,7 @@ final readonly class ExceptionFactory
         }
     }
 
-    private static function parseMessage(ClientException $exception, string $resource):string
+    private static function parseMessage(RequestException $exception, string $resource):string
     {
         $content = json_decode($exception->getResponse()->getBody()->getContents());
         dd($exception->getResponse()->getHeaders());

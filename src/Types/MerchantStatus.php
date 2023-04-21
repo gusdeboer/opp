@@ -13,6 +13,9 @@ enum MerchantStatus: string
     case Terminated = 'terminated';
     case Blocked = 'blocked';
 
+    /**
+     * @return array<string>
+     */
     public static function getValues(): array
     {
         return array_column(self::cases(), 'value');
@@ -27,11 +30,7 @@ enum MerchantStatus: string
             self::Suspended->value => self::Suspended,
             self::Terminated->value => self::Terminated,
             self::Blocked->value => self::Blocked,
-            default => throw new InvalidArgumentException(sprintf('Invalid status: %s', $status)),
+            default => throw new \InvalidArgumentException(sprintf('Invalid status: %s', $status)),
         };
-
-        Assertion::isInstanceOf($object, self::class);
-
-        return $object;
     }
 }

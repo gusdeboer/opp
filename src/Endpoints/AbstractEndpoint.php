@@ -21,12 +21,7 @@ abstract readonly class AbstractEndpoint
     public function __construct(OnlinePaymentPlatformApiClient $onlinePaymentPlatformApiClient)
     {
         $normalizers = [
-            new BackedEnumNormalizer(
-                null,
-                null,
-                null,
-                new ReflectionExtractor()
-            ),
+            new BackedEnumNormalizer(),
             new ObjectNormalizer(
                 null,
                 new CamelCaseToSnakeCaseNameConverter(),
