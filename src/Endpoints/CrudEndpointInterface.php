@@ -23,5 +23,5 @@ interface CrudEndpointInterface
 
     public function update(ResourceInterface $resource): ResourceInterface;
 
-    public function delete(string $uid): bool;
+    public function delete(ResourceInterface $resource): bool;
 }

@@ -11,7 +11,7 @@ final class Requirement
     private ?string $objectUid;
     private string $objectType;
     private ?string $objectUrl;
-    private string $objectRedirectUrl;
+    private ?string $objectRedirectUrl;
 
     /**
      * @return string
@@ -94,9 +94,9 @@ final class Requirement
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getObjectRedirectUrl(): string
+    public function getObjectRedirectUrl(): ?string
     {
         return $this->objectRedirectUrl;
     }
@@ -104,7 +104,7 @@ final class Requirement
     /**
      * @param string $objectRedirectUrl
      */
-    public function setObjectRedirectUrl(string $objectRedirectUrl): void
+    public function setObjectRedirectUrl(?string $objectRedirectUrl): void
     {
         $this->objectRedirectUrl = $objectRedirectUrl;
     }
