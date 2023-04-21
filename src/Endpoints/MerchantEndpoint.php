@@ -65,6 +65,25 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
         return [];
     }
 
+    public function updateStatus(ResourceInterface $resource): Merchant
+    {
+        Assertion::isInstanceOf($resource, Merchant::class);
+
+        $requestBody = $this->serializer->normalize(
+            data: $resource,
+            context: [AbstractNormalizer::ATTRIBUTES => [
+                'status',
+            ]]
+        );
+        $request = $this->client->request(
+            'POST',
+            sprintf('%s/%s', self::ENDPOINT, $resource->getUid()),
+            ['json' => $requestBody]
+        );
+
+        return $this->serializer->deserialize($request->getBody()->getContents(), Merchant::class, 'json');
+    }
+
 
     public function update(ResourceInterface $resource): Merchant
     {
@@ -73,14 +92,13 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
         $requestBody = $this->serializer->normalize(
             data: $resource,
             context: [AbstractNormalizer::ATTRIBUTES => [
-                'status',
                 'emailaddress',
                 'isPep',
                 'notifyUrl',
                 'returnUrl'
             ]]
         );
-        dd($requestBody);
+
         $request = $this->client->request(
             'POST',
             sprintf('%s/%s', self::ENDPOINT, $resource->getUid()),

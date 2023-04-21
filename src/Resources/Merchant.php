@@ -17,7 +17,8 @@ final class Merchant implements ResourceInterface
     private Compliance $compliance;
     private MerchantType $type;
     private ?string $cocNr;
-    private ?array $legalEntity; // LegalEntity
+    private ?string $legalEntity;
+    /** @var array<int, string>|null  */
     private ?array $tradingNames;
     private ?string $name;
     private ?string $phone;
@@ -29,8 +30,11 @@ final class Merchant implements ResourceInterface
     private ?array $profiles; // Profile
     private ?array $paymentMethods; // PaymentMethod
     private ?string $notifyUrl;
-    public ?string $returnUrl;
+    private ?string $returnUrl;
 
+    /**
+     * @var array<string, string>|null
+     */
     private ?array $metaData;
 
     public function __construct()
@@ -57,9 +61,6 @@ final class Merchant implements ResourceInterface
         $this->status = MerchantStatus::fromString($status);
     }
 
-    /**
-     * @return array
-     */
     public function getCompliance(): ?Compliance
     {
         return $this->compliance;
@@ -81,31 +82,37 @@ final class Merchant implements ResourceInterface
         $this->type = MerchantType::fromString($type);
     }
 
-    public function getCocNumber(): ?string
+    public function getCocNr(): ?string
     {
-        return $this->cocNumber;
+        return $this->cocNr;
     }
 
-    public function setCocNumber(?string $cocNumber): void
+    public function setCocNr(?string $cocNr): void
     {
-        $this->cocNumber = $cocNumber;
+        $this->cocNr = $cocNr;
     }
 
-    public function getLegalEntity(): ?array
+    public function getLegalEntity(): ?string
     {
         return $this->legalEntity;
     }
 
-    public function setLegalEntity(?array $legalEntity): void
+    public function setLegalEntity(?string $legalEntity): void
     {
         $this->legalEntity = $legalEntity;
     }
 
+    /**
+     * @return array<int, string>|null
+     */
     public function getTradingNames(): ?array
     {
         return $this->tradingNames;
     }
 
+    /**
+     * @param array<int, string>|null $tradingNames
+     */
     public function setTradingNames(?array $tradingNames): void
     {
         $this->tradingNames = $tradingNames;
@@ -131,14 +138,14 @@ final class Merchant implements ResourceInterface
         $this->phone = $phone;
     }
 
-    public function getVatNumber(): ?string
+    public function getVatNr(): ?string
     {
-        return $this->vatNumber;
+        return $this->vatNr;
     }
 
-    public function setVatNumber(?string $vatNumber): void
+    public function setVatNr(?string $vatNr): void
     {
-        $this->vatNumber = $vatNumber;
+        $this->vatNr = $vatNr;
     }
 
     public function getCountry(): ?CountryType
@@ -263,11 +270,17 @@ final class Merchant implements ResourceInterface
         $this->returnUrl = $returnUrl;
     }
 
+    /**
+     * @return array<string, string>|null
+     */
     public function getMetaData(): ?array
     {
         return $this->metaData;
     }
 
+    /**
+     * @param array<string, string>|null $metaData
+     */
     public function setMetaData(?array $metaData): void
     {
         $this->metaData = $metaData;

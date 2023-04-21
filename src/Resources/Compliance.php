@@ -9,7 +9,8 @@ final class Compliance
     private int $level;
     private ComplianceStatus $status;
     private ?string $overviewUrl;
-    private ?array $requirements;
+    /** @var Requirement[] */
+    public array $requirements;
 
     public function getLevel(): int
     {
@@ -41,13 +42,16 @@ final class Compliance
         $this->overviewUrl = $overviewUrl;
     }
 
-    public function getRequirements(): ?array
+    /**
+     * @return array<int, Requirement>
+     */
+    public function getRequirements(): array
     {
-        return $this->requirements;
+        return $this->requirements ?? [];
     }
 
-    public function setRequirements(?array $requirements): void
+    public function addRequirements(Requirement $requirement): void
     {
-        $this->requirements = $requirements;
+        $this->requirements[] = $requirement;
     }
 }

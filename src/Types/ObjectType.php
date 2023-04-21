@@ -17,11 +17,11 @@ enum ObjectType: string
         return array_column(self::cases(), 'value');
     }
 
-    public static function fromString(string $status): self
+    public static function fromString(string $objectType): self
     {
-        return match ($status) {
+        return match ($objectType) {
             self::Merchant->value => self::Merchant,
-            default => throw new \InvalidArgumentException(sprintf('Invalid object: %s', $status)),
+            default => throw new \InvalidArgumentException(sprintf('Invalid object: %s', $objectType)),
         };
     }
 }
