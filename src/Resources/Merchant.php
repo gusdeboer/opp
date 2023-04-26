@@ -3,10 +3,12 @@
 namespace Gusdeboer\OPP\Resources;
 
 use Gusdeboer\OPP\Resources\Traits\ResourceTrait;
-use Gusdeboer\OPP\Types\CountryType;
+use Gusdeboer\OPP\Types\Country;
+use Gusdeboer\OPP\Types\Locale;
 use Gusdeboer\OPP\Types\MerchantStatus;
 use Gusdeboer\OPP\Types\MerchantType;
 use Gusdeboer\OPP\Types\ObjectType;
+use Gusdeboer\OPP\Types\SettlementInterval;
 
 final class Merchant implements ResourceInterface
 {
@@ -20,12 +22,18 @@ final class Merchant implements ResourceInterface
     private ?string $legalEntity;
     /** @var array<int, string>|null  */
     private ?array $tradingNames;
+    private bool $isPep;
+    private ?SettlementInterval $settlementInterval;
+    private ?string $firstName;
+    private ?string $lastName;
     private ?string $name;
     private ?string $phone;
     private ?string $vatNr;
-    private ?CountryType $country;
+    private ?Country $country;
+    private ?Locale $locale;
     private ?string $sector;
-    private ?array $addresses; // Address
+    /** @var Address[]|null  */
+    private array $addresses;
     private ?array $contacts; // Contact
     private ?array $profiles; // Profile
     private ?array $paymentMethods; // PaymentMethod
@@ -128,6 +136,26 @@ final class Merchant implements ResourceInterface
         $this->name = $name;
     }
 
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
     public function getPhone(): ?string
     {
         return $this->phone;
@@ -148,14 +176,24 @@ final class Merchant implements ResourceInterface
         $this->vatNr = $vatNr;
     }
 
-    public function getCountry(): ?CountryType
+    public function getCountry(): ?Country
     {
         return $this->country;
     }
 
     public function setCountry(?string $country): void
     {
-        $this->country = $country ? CountryType::fromString($country) : null;
+        $this->country = $country ? Country::fromString($country) : null;
+    }
+
+    public function getLocale(): ?Locale
+    {
+        return $this->locale;
+    }
+
+    public function setLocale(?string $locale): void
+    {
+        $this->locale = $locale ? Locale::fromString($locale) : null;
     }
 
     /**
@@ -174,20 +212,14 @@ final class Merchant implements ResourceInterface
         $this->sector = $sector;
     }
 
-    /**
-     * @return array|null
-     */
-    public function getAddresses(): ?array
+    public function getAddresses(): array
     {
-        return $this->addresses;
+        return $this->addresses ?? [];
     }
 
-    /**
-     * @param array|null $addresses
-     */
-    public function setAddresses(?array $addresses): void
+    public function addAddresses(Address $address): void
     {
-        $this->addresses = $addresses;
+        $this->addresses[] = $address;
     }
 
     /**
@@ -285,4 +317,37 @@ final class Merchant implements ResourceInterface
     {
         $this->metaData = $metaData;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsPep(): bool
+    {
+        return $this->isPep;
+    }
+
+    /**
+     * @param bool $isPep
+     */
+    public function setIsPep(bool $isPep): void
+    {
+        $this->isPep = $isPep;
+    }
+
+    /**
+     * @return SettlementInterval|null
+     */
+    public function getSettlementInterval(): ?SettlementInterval
+    {
+        return $this->settlementInterval;
+    }
+
+    /**
+     * @param string|null $settlementInterval
+     */
+    public function setSettlementInterval(?string $settlementInterval): void
+    {
+        $this->settlementInterval = $settlementInterval ? SettlementInterval::fromString($settlementInterval) : null;
+    }
+
 }

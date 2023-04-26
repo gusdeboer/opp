@@ -5,7 +5,7 @@ namespace Gusdeboer\OPP\Types;
 use Assert\Assert;
 use Assert\Assertion;
 
-enum CountryType: string
+enum Country: string
 {
     case Belgium = 'bel';
     case Bulgaria = 'bgr';

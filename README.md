@@ -1,6 +1,6 @@
 # Online Payment Platform API client
 
-intro
+An API client designed to interface with the Online Payment Platform REST API. 
 
 ## Requirements
 
@@ -19,11 +19,33 @@ $ composer require gusdeboer/opp
 
 ## Getting started
 
-TODO
+```php
+use Gusdeboer\OPP\OnlinePaymentPlatformApiClient;
+
+public function index(): void
+{
+    // Setup client with your API key
+    $client = new OnlinePaymentPlatformApiClient('apikey');
+    
+    // Retrieve a merchant
+    $merchant = $client->merchants->retrieve('merchant_uid'); 
+}
+```
+
+Need more? [Check out the examples](./examples/README.md)
 
 ## Debugging
 
-TODO
+If you are setting up you environment it's good practice to test your application in the Open Payment Platform Sandbox
+
+```php
+use Gusdeboer\OPP\OnlinePaymentPlatformApiClient;
+
+$client = new OnlinePaymentPlatformApiClient(
+    'apikey',
+    OnlinePaymentPlatformApiClient::ENVIRONMENT_SANDBOX
+);
+```
 
 ## API Documentation
 
@@ -31,6 +53,30 @@ If you wish to learn more about the API, please visit the [Online Payment Platfo
 
 ## Contribute
 
-TODO
+Please read the [Contribute.md](CONTRIBUTE.md)
+
+### Contributers
+
+- [Gus de Boer](https://github.com/gusdeboer)
+- You?
 
 ## TODO
+
+- [ ] Endpoints
+  - [ ] Merchant
+    - [ ] Address
+    - [ ] Bank Account
+    - [ ] Contact
+    - [ ] Profile
+    - [ ] UBO
+    - [ ] Compliance
+    - [ ] Ticket
+  - [ ] Files
+  - [ ] Transactions
+  - [ ] Mandates & Direct Debit
+  - [ ] Charges
+  - [ ] Withdrawals
+  - [ ] Virtual IBAN
+  - [ ] Issuer
+  - [ ] Disputes
+  - [ ] Mandates

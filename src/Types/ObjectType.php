@@ -2,12 +2,10 @@
 
 namespace Gusdeboer\OPP\Types;
 
-use Assert\Assert;
-use Assert\Assertion;
-
 enum ObjectType: string
 {
     case Merchant = 'merchant';
+    case Address = 'address';
 
     /**
      * @return array<string>

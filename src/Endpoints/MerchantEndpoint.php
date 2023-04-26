@@ -48,7 +48,8 @@ readonly class MerchantEndpoint extends AbstractEndpoint implements CrudEndpoint
                 'addresses'
             ]]
         );
-
+        dump($resource);
+        dd($requestBody);
         $request = $this->client->request(
             'POST',
             self::ENDPOINT,

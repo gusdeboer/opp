@@ -2,8 +2,6 @@
 
 namespace Gusdeboer\OPP\Types;
 
-use Assert\Assertion;
-
 enum MerchantStatus: string
 {
     case New = 'new';

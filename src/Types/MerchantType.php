@@ -2,8 +2,6 @@
 
 namespace Gusdeboer\OPP\Types;
 
-use Assert\Assertion;
-
 enum MerchantType: string
 {
     case Business = 'business';
