@@ -27,23 +27,17 @@ abstract readonly class AbstractEndpoint
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
 
-        $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
+        $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
 
         $normalizers = [
             new BackedEnumNormalizer(),
             new ArrayDenormalizer(),
             new ObjectNormalizer(
                 null,
-                new CamelCaseToSnakeCaseNameConverter(),
-                null,
-                new ReflectionExtractor()
-            ),
-            new ObjectNormalizer(
-                $classMetadataFactory,
                 $metadataAwareNameConverter,
                 null,
                 new ReflectionExtractor()
-            ),
+            )
         ];
         $encoders = [new JsonEncoder()];
 
