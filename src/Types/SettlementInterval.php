@@ -10,7 +10,6 @@ enum SettlementInterval: string
     case Yearly = 'yearly';
     case Continuous = 'continuous';
 
-
     /**
      * @return array<string>
      */

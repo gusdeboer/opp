@@ -80,3 +80,4 @@ Please read the [Contribute.md](CONTRIBUTE.md)
   - [ ] Issuer
   - [ ] Disputes
   - [ ] Mandates
+- [ ] Group properties per endpoint call, [docs](https://symfony.com/doc/current/components/serializer.html#attributes-groups)

@@ -6,6 +6,7 @@ use Gusdeboer\OPP\Resources\Traits\ResourceTrait;
 use Gusdeboer\OPP\Types\AddressType;
 use Gusdeboer\OPP\Types\Country;
 use Gusdeboer\OPP\Types\ObjectType;
+use Symfony\Component\Serializer\Annotation\SerializedName;
 
 final class Address
 {
@@ -13,8 +14,10 @@ final class Address
 
     private \DateTimeImmutable $verified;
     private AddressType $type;
-    private ?string $addressLine_1;
-    private ?string $addressLine_2;
+    #[SerializedName('address_line_1')]
+    private ?string $addressLine1;
+    #[SerializedName('address_line_2')]
+    private ?string $addressLine2;
     private ?string $zipcode;
     private ?string $city;
     private ?Country $country;
@@ -55,33 +58,33 @@ final class Address
     /**
      * @return string|null
      */
-    public function getAddressLine_1(): ?string
+    public function getAddressLine1(): ?string
     {
-        return $this->addressLine_1;
+        return $this->addressLine1;
     }
 
     /**
-     * @param string|null $addressLine_1
+     * @param string|null $addressLine1
      */
-    public function setAddressLine_1(?string $addressLine_1): void
+    public function setAddressLine1(?string $addressLine1): void
     {
-        $this->addressLine_1 = $addressLine_1;
+        $this->addressLine1 = $addressLine1;
     }
 
     /**
      * @return string|null
      */
-    public function getAddressLine_2(): ?string
+    public function getAddressLine2(): ?string
     {
-        return $this->addressLine_2;
+        return $this->addressLine2;
     }
 
     /**
-     * @param string|null $addressLine_2
+     * @param string|null $addressLine2
      */
-    public function setAddressLine_2(?string $addressLine_2): void
+    public function setAddressLine2(?string $addressLine2): void
     {
-        $this->addressLine_2 = $addressLine_2;
+        $this->addressLine2 = $addressLine2;
     }
 
     /**
