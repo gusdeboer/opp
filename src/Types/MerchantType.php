@@ -2,7 +2,7 @@
 
 namespace Gusdeboer\OPP\Types;
 
-enum MerchantType: string
+enum MerchantType: string implements TypeInterface
 {
     case Business = 'business';
     case Consumer = 'consumer';
@@ -13,14 +13,5 @@ enum MerchantType: string
     public static function getValues(): array
     {
         return array_column(self::cases(), 'value');
-    }
-
-    public static function fromString(string $status): self
-    {
-        return match ($status) {
-            self::Business->value => self::Business,
-            self::Consumer->value => self::Consumer,
-            default => throw new \InvalidArgumentException(sprintf('Invalid merchant type: %s', $status)),
-        };
     }
 }

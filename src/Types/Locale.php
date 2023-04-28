@@ -2,7 +2,7 @@
 
 namespace Gusdeboer\OPP\Types;
 
-enum Locale: string
+enum Locale: string implements TypeInterface
 {
     case EN = 'en';
     case NL = 'nl';
@@ -14,16 +14,5 @@ enum Locale: string
     public static function getValues(): array
     {
         return array_column(self::cases(), 'value');
-    }
-
-    public static function fromString(string $locale): self
-    {
-        return match ($locale) {
-            self::EN->value => self::EN,
-            self::NL->value => self::NL,
-            self::FR->value => self::FR,
-            self::DE->value => self::DE,
-            default => throw new \InvalidArgumentException(sprintf('Invalid locale: %s', $locale)),
-        };
     }
 }

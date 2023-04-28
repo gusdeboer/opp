@@ -27,9 +27,9 @@ final class Compliance
         return $this->status;
     }
 
-    public function setStatus(string $status): void
+    public function setStatus(ComplianceStatus $status): void
     {
-        $this->status = ComplianceStatus::fromString($status);
+        $this->status = $status;
     }
 
     public function getOverviewUrl(): ?string

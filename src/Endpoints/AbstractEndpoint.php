@@ -6,6 +6,7 @@ namespace Gusdeboer\OPP\Endpoints;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Gusdeboer\OPP\OnlinePaymentPlatformApiClient;
+use Gusdeboer\OPP\Resources\TypeInterface;
 use GuzzleHttp\Client;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
@@ -27,7 +28,10 @@ abstract readonly class AbstractEndpoint
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
 
-        $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory, new CamelCaseToSnakeCaseNameConverter());
+        $metadataAwareNameConverter = new MetadataAwareNameConverter(
+            $classMetadataFactory,
+            new CamelCaseToSnakeCaseNameConverter()
+        );
 
         $normalizers = [
             new BackedEnumNormalizer(),

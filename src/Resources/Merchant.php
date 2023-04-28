@@ -9,45 +9,79 @@ use Gusdeboer\OPP\Types\MerchantStatus;
 use Gusdeboer\OPP\Types\MerchantType;
 use Gusdeboer\OPP\Types\ObjectType;
 use Gusdeboer\OPP\Types\SettlementInterval;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 final class Merchant implements ResourceInterface
 {
     use ResourceTrait;
 
+    #[Groups(['create', 'update'])]
     private string $emailaddress;
+
+    #[Groups(['updateStatus'])]
     private MerchantStatus $status;
+
     private Compliance $compliance;
+
     private MerchantType $type;
+
+    #[Groups(['create'])]
     private ?string $cocNr;
+
+    #[Groups(['create'])]
     private ?string $legalEntity;
+
     /** @var array<int, string>|null  */
+    #[Groups(['create'])]
     private ?array $tradingNames;
+
+    #[Groups(['create', 'update'])]
     private bool $isPep;
+
+    #[Groups(['create'])]
     private ?SettlementInterval $settlementInterval;
+
+    #[Groups(['create'])]
     private ?string $firstName;
+
+    #[Groups(['create'])]
     private ?string $lastName;
+
     private ?string $name;
+
+    #[Groups(['create'])]
     private ?string $phone;
+
+    #[Groups(['create'])]
     private ?string $vatNr;
+
     private ?Country $country;
+
+    #[Groups(['create'])]
     private ?Locale $locale;
+
     private ?string $sector;
     /** @var Address[]|null  */
+    #[Groups(['create'])]
     private array $addresses;
+
     private ?array $contacts; // Contact
+
     private ?array $profiles; // Profile
+
     private ?array $paymentMethods; // PaymentMethod
+
+    #[Groups(['create', 'update'])]
     private ?string $notifyUrl;
+
+    #[Groups(['create', 'update'])]
     private ?string $returnUrl;
 
     /**
      * @var array<string, string>|null
      */
+    #[Groups(['create'])]
     private ?array $metaData;
-
-    public function __construct()
-    {
-    }
 
     public function getEmailaddress(): string
     {
@@ -64,9 +98,9 @@ final class Merchant implements ResourceInterface
         return $this->status;
     }
 
-    public function setStatus(string $status): void
+    public function setStatus(MerchantStatus $status): void
     {
-        $this->status = MerchantStatus::fromString($status);
+        $this->status = $status;
     }
 
     public function getCompliance(): ?Compliance
@@ -85,9 +119,9 @@ final class Merchant implements ResourceInterface
         return $this->type;
     }
 
-    public function setType(string $type): void
+    public function setType(MerchantType $type): void
     {
-        $this->type = MerchantType::fromString($type);
+        $this->type = $type;
     }
 
     public function getCocNr(): ?string
@@ -181,9 +215,9 @@ final class Merchant implements ResourceInterface
         return $this->country;
     }
 
-    public function setCountry(?string $country): void
+    public function setCountry(?Country $country): void
     {
-        $this->country = $country ? Country::fromString($country) : null;
+        $this->country = $country;
     }
 
     public function getLocale(): ?Locale
@@ -191,9 +225,9 @@ final class Merchant implements ResourceInterface
         return $this->locale;
     }
 
-    public function setLocale(?string $locale): void
+    public function setLocale(?Locale $locale): void
     {
-        $this->locale = $locale ? Locale::fromString($locale) : null;
+        $this->locale = $locale;
     }
 
     /**
@@ -345,9 +379,9 @@ final class Merchant implements ResourceInterface
     /**
      * @param string|null $settlementInterval
      */
-    public function setSettlementInterval(?string $settlementInterval): void
+    public function setSettlementInterval(?SettlementInterval $settlementInterval): void
     {
-        $this->settlementInterval = $settlementInterval ? SettlementInterval::fromString($settlementInterval) : null;
+        $this->settlementInterval = $settlementInterval;
     }
 
 }

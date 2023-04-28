@@ -130,8 +130,8 @@ final class Address
     /**
      * @param string|null $country
      */
-    public function setCountry(?string $country): void
+    public function setCountry(?Country $country): void
     {
-        $this->country = $country ? Country::fromString($country) : null;
+        $this->country = $country;
     }
 }

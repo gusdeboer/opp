@@ -36,7 +36,7 @@ Need more? [Check out the examples](./examples/README.md)
 
 ## Debugging
 
-If you are setting up you environment it's good practice to test your application in the Open Payment Platform Sandbox
+If you are setting up your project it's good practice to test your application in the Open Payment Platform Sandbox
 
 ```php
 use Gusdeboer\OPP\OnlinePaymentPlatformApiClient;
@@ -81,3 +81,5 @@ Please read the [Contribute.md](CONTRIBUTE.md)
   - [ ] Disputes
   - [ ] Mandates
 - [ ] Group properties per endpoint call, [docs](https://symfony.com/doc/current/components/serializer.html#attributes-groups)
+- [ ] Types fromString should not be needed, set from Country:Belgium should be enough
+  - function blaat(string|Country $country) { instance of, go }
